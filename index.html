@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Khushnood Ali - Software Developer Portfolio</title>
+    <title>Khushnood Ali - Full Stack Developer & AI Research Scholar</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -16,9 +16,13 @@
             <div class="nav-menu" id="nav-menu">
                 <a href="#home" class="nav-link">Home</a>
                 <a href="#about" class="nav-link">About</a>
+                <a href="#experience" class="nav-link">Experience</a>
                 <a href="#skills" class="nav-link">Skills</a>
                 <a href="#projects" class="nav-link">Projects</a>
+                <a href="#publications" class="nav-link">Publications</a>
+                <a href="#certifications" class="nav-link">Certifications</a>
                 <a href="#contact" class="nav-link">Contact</a>
+                <button class="btn btn--primary btn--sm resume-nav-btn" onclick="openResumeModal()">Resume</button>
             </div>
             <div class="nav-toggle" id="nav-toggle">
                 <span></span>
@@ -34,31 +38,26 @@
             <div class="hero-content">
                 <div class="hero-text">
                     <h1 class="hero-title">Hi, I'm Khushnood Ali</h1>
-                    <h2 class="hero-subtitle">Final-Year Computer Science Engineering Student | Full-Stack Developer | Cybersecurity Enthusiast</h2>
-                    <p class="hero-description">
-                    Passionate and detail-oriented developer with expertise in full-stack development and a strong focus on cybersecurity. 
-                    Certified Ethical Hacker (CEH) with hands-on experience in vulnerability assessment, penetration testing, and secure application development. 
-                    Skilled in building innovative, scalable solutions using modern technologies, machine learning, and advanced security practices. 
-                    Dedicated to solving complex problems and delivering impactful, high-quality software.
-                    </p>
-
+                    <h2 class="hero-subtitle">Full Stack Web Developer & AI Research Scholar</h2>
+                    <p class="hero-description">Passionate developer and researcher specializing in AI/ML, web development, and cybersecurity. Currently working as Full Stack Web Developer Intern with published research in cardiovascular disease prediction using explainable AI.</p>
                     <div class="hero-buttons">
                         <a href="#projects" class="btn btn--primary btn--lg">View Projects</a>
                         <a href="#contact" class="btn btn--outline btn--lg">Contact Me</a>
+                        <button class="btn btn--secondary btn--lg" onclick="openResumeModal()">Download Resume</button>
                     </div>
                 </div>
                 <div class="hero-stats">
                     <div class="stat-item">
-                        <span class="stat-number">5+</span>
+                        <span class="stat-number">6+</span>
                         <span class="stat-label">Projects</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-number">18</span>
-                        <span class="stat-label">GitHub Contributions</span>
+                        <span class="stat-number">1</span>
+                        <span class="stat-label">IEEE Publication</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-number">5+</span>
-                        <span class="stat-label">Technologies</span>
+                        <span class="stat-number">3+</span>
+                        <span class="stat-label">Certifications</span>
                     </div>
                 </div>
             </div>
@@ -71,40 +70,89 @@
             <h2 class="section-title">About Me</h2>
             <div class="about-content">
                 <div class="about-text">
-                    <p>
-                        Passionate software developer and cybersecurity enthusiast with expertise in full-stack development and secure application design. 
-                        Specializing in traffic management systems, web applications, and mobile solutions, I combine technical proficiency with a strong focus on innovation and security. 
-                        Certified Ethical Hacker (CEH), skilled in vulnerability assessment, penetration testing, and implementing robust security measures.
-                    </p>
-                    <p>
-                        My journey in technology has led me to work on impactful projects such as an automated traffic violation detection system using YOLO-based machine learning, 
-                        a comprehensive library management platform, and interactive mobile applications. These experiences have strengthened my ability to develop scalable, 
-                        user-friendly solutions while addressing real-world challenges.
-                    </p>
-                    <p>
-                        With a solid foundation in multiple programming languages, a keen interest in emerging technologies, and a commitment to continuous learning, 
-                        I strive to build innovative, secure, and future-ready solutions that make a tangible impact.
-                    </p>
+                <p>
+                    Passionate Full-Stack Developer and Cybersecurity Enthusiast with expertise in building secure, scalable, and innovative solutions. 
+                    Certified Ethical Hacker (CEH) with hands-on experience in vulnerability assessment, penetration testing, and secure application design. 
+                </p>
+                <p>
+                    My journey spans impactful projects such as:
+                    <ul>
+                        <li><strong><a href="https://github.com/Khushnood-Ali/Automatic-Speed-Challan-System-">Automatic Speed Challan System</a></strong> – YOLO-based traffic violation detection and e-challan automation.</li>
+                        <li><strong><a href="https://github.com/Khushnood-Ali/Virtual-Pet-Simulator">Virtual Pet Simulator</a></strong> – Interactive OOP-based Java application featuring real-time pet care simulation.</li>
+                        <li><strong><a href="https://github.com/Khushnood-Ali/Weather-APP">Weather App</a></strong> – Responsive weather tracking app using JavaScript and OpenWeatherMap API.</li>
+                        <li><strong><a href="https://khushnood-ali.github.io/My-Portfolio/">Portfolio Website</a></strong> – Modern, responsive personal portfolio showcasing projects and achievements.</li>
+                    </ul>
+                </p>
+                <p>
+                    With strong foundations in C++, Java, JavaScript, and modern frameworks, I aim to combine cutting-edge technologies with robust security practices to create impactful solutions. Always eager to learn and explore, I thrive in fast-paced environments where innovation meets security.
+                </p>
                 </div>
-
                 <div class="about-stats">
+                    <div class="education-info">
+                        <h3>Education</h3>
+                        <div class="education-card">
+                            <h4>Bennett University, Greater Noida</h4>
+                            <p class="degree">B.Tech in Computer Science Engineering</p>
+                            <p class="duration">September 2022 – June 2026</p>
+                            <p class="cgpa">CGPA: 8.00/10.00</p>
+                        </div>
+                    </div>
                     <div class="github-stats">
                         <h3>GitHub Activity</h3>
                         <div class="stats-grid">
                             <div class="stat-card">
                                 <span class="stat-value">18</span>
-                                <span class="stat-desc">Contributions (Last Year)</span>
+                                <span class="stat-desc">Contributions</span>
                             </div>
                             <div class="stat-card">
-                                <span class="stat-value">6</span>
-                                <span class="stat-desc">Public Repositories</span>
+                                <span class="stat-value">6+</span>
+                                <span class="stat-desc">Repositories</span>
                             </div>
                             <div class="stat-card">
-                                <span class="stat-value">1</span>
-                                <span class="stat-desc">Following</span>
+                                <span class="stat-value">2</span>
+                                <span class="stat-desc">Internships</span>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience">
+        <div class="container">
+            <h2 class="section-title">Professional Experience</h2>
+            <div class="experience-timeline">
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div class="company-info">
+                            <h3>Full Stack Web Developer Intern</h3>
+                            <h4>Unified Mentor</h4>
+                        </div>
+                        <div class="duration-badge current">August 2025 – Present</div>
+                    </div>
+                    <ul class="experience-responsibilities">
+                        <li>Developing and maintaining scalable full-stack web applications using MERN stack</li>
+                        <li>Implementing responsive UI components, RESTful APIs, and secure authentication systems</li>
+                        <li>Collaborating with teams on deployment, optimization, and performance improvements</li>
+                        <li>Enhancing user experience by integrating dashboards, analytics, and real-time data handling</li>
+                    </ul>
+                </div>
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div class="company-info">
+                            <h3>Frontend Developer Intern</h3>
+                            <h4>Cyro Studios</h4>
+                        </div>
+                        <div class="duration-badge">February 2025 – July 2025</div>
+                    </div>
+                    <ul class="experience-responsibilities">
+                        <li>Built responsive web applications using HTML, CSS, JavaScript, and React.js</li>
+                        <li>Improved site performance by 25% and enhanced cross-browser compatibility</li>
+                        <li>Integrated RESTful APIs for real-time data into web applications</li>
+                        <li>Assisted in debugging, code refactoring, and applying best practices</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -118,36 +166,53 @@
                 <div class="skill-category">
                     <h3>Programming Languages</h3>
                     <div class="skill-items">
-                        <span class="skill-badge">Python</span>
+                        <span class="skill-badge">C++ (DSA)</span>
                         <span class="skill-badge">Java</span>
                         <span class="skill-badge">JavaScript</span>
-                        <span class="skill-badge">PHP</span>
+                        <span class="skill-badge">Python</span>
+                        <span class="skill-badge">SQL</span>
+                        <span class="skill-badge">MongoDB</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Web Technologies</h3>
+                    <div class="skill-items">
+                        <span class="skill-badge">React.js</span>
+                        <span class="skill-badge">Node.js</span>
+                        <span class="skill-badge">Express.js</span>
                         <span class="skill-badge">HTML5</span>
                         <span class="skill-badge">CSS3</span>
+                        <span class="skill-badge">RESTful APIs</span>
                     </div>
                 </div>
                 <div class="skill-category">
-                    <h3>Databases</h3>
+                    <h3>Specialized Skills</h3>
+                    <div class="skill-items">
+                        <span class="skill-badge">Machine Learning</span>
+                        <span class="skill-badge">Artificial Intelligence</span>
+                        <span class="skill-badge">Ethical Hacking</span>
+                        <span class="skill-badge">Network Security</span>
+                        <span class="skill-badge">Computer Vision</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Databases & Tools</h3>
                     <div class="skill-items">
                         <span class="skill-badge">MySQL</span>
+                        <span class="skill-badge">SQLite</span>
+                        <span class="skill-badge">MongoDB</span>
+                        <span class="skill-badge">OpenCV</span>
+                        <span class="skill-badge">YOLO</span>
                     </div>
                 </div>
                 <div class="skill-category">
-                    <h3>Technologies</h3>
+                    <h3>Soft Skills</h3>
                     <div class="skill-items">
-                        <span class="skill-badge">Android Development</span>
-                        <span class="skill-badge">Web Development</span>
-                        <span class="skill-badge">API Integration</span>
-                        <span class="skill-badge">Jupyter Notebooks</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>Specialties</h3>
-                    <div class="skill-items">
-                        <span class="skill-badge">Machine Learning (YOLO)</span>
-                        <span class="skill-badge">Computer Vision</span>
-                        <span class="skill-badge">Traffic Management</span>
-                        <span class="skill-badge">Real-time Applications</span>
+                        <span class="skill-badge soft-skill">Problem Solving</span>
+                        <span class="skill-badge soft-skill">Team Work</span>
+                        <span class="skill-badge soft-skill">Project Management</span>
+                        <span class="skill-badge soft-skill">Communication</span>
+                        <span class="skill-badge soft-skill">Adaptability</span>
                     </div>
                 </div>
             </div>
@@ -163,56 +228,84 @@
                 <div class="project-card">
                     <div class="project-header">
                         <h3>Automatic Speed Challan System</h3>
-                        <span class="project-date">April 2024</span>
+                        <span class="project-date">January 2024 – April 2024</span>
                     </div>
-                    <p class="project-description">Advanced license plate detection system with comprehensive data logging and timestamp functionality for traffic monitoring.</p>
+                    <p class="project-description">Advanced license plate detection system with comprehensive data logging and timestamp functionality for traffic monitoring using YOLO and custom datasets.</p>
                     <div class="project-tech">
                         <span class="tech-badge">Python</span>
-                        <span class="tech-badge">Jupyter Notebook</span>
+                        <span class="tech-badge">OpenCV</span>
                         <span class="tech-badge">YOLO</span>
+                        <span class="tech-badge">Machine Learning</span>
                         <span class="tech-badge">Computer Vision</span>
                     </div>
                     <ul class="project-features">
-                        <li>License plate recognition</li>
-                        <li>Data logging with timestamps</li>
-                        <li>Custom dataset training</li>
-                        <li>Object detection optimization</li>
+                        <li>Real-time license plate recognition using OpenCV</li>
+                        <li>Automated violation detection and e-challan generation</li>
+                        <li>Scalable backend with robust data storage</li>
+                        <li>Enhanced accuracy in traffic law enforcement</li>
                     </ul>
                     <div class="project-links">
-                        <a href="https://github.com/Khushnood-Ali/Automatic-Speed-Challan-System-" target="_blank" class="btn btn--primary btn--sm">View on GitHub</a>
+                        <a href="https://github.com/Khushnood-Ali/Automatic-Speed-Challan-System-" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--sm external-link">View on GitHub</a>
                     </div>
                 </div>
 
-                <!-- Project 2: SOUL - Random Chat App -->
+                <!-- Project 2: Weather App -->
                 <div class="project-card">
                     <div class="project-header">
-                        <h3>SOUL - Random Chat App</h3>
-                        <span class="project-date">February 2025</span>
+                        <h3>Weather App - OpenWeatherMap Powered</h3>
+                        <span class="project-date">August 2025</span>
                     </div>
-                    <p class="project-description">Android application enabling users to connect and chat with random people worldwide, built with Java.</p>
+                    <p class="project-description">Built a responsive weather application using Vanilla JavaScript with geolocation support, real-time weather data, and intuitive UI/UX with clean layouts and interactive elements.</p>
                     <div class="project-tech">
-                        <span class="tech-badge">Java</span>
-                        <span class="tech-badge">Android</span>
-                        <span class="tech-badge">Mobile Development</span>
+                        <span class="tech-badge">JavaScript</span>
+                        <span class="tech-badge">HTML5</span>
+                        <span class="tech-badge">CSS3</span>
+                        <span class="tech-badge">OpenWeatherMap API</span>
+                        <span class="tech-badge">Geolocation API</span>
                     </div>
                     <ul class="project-features">
-                        <li>Random user matching</li>
-                        <li>Real-time messaging</li>
-                        <li>User-friendly interface</li>
-                        <li>Cross-platform compatibility</li>
+                        <li>Geolocation support for automatic weather fetching</li>
+                        <li>Real-time weather data integration</li>
+                        <li>Responsive design across all devices</li>
+                        <li>Keyboard shortcuts and error handling</li>
                     </ul>
                     <div class="project-links">
-                        <a href="https://github.com/Khushnood-Ali/SOUL" target="_blank" class="btn btn--primary btn--sm">View on GitHub</a>
+                        <a href="https://github.com/Khushnood-Ali/Weather-APP" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--sm external-link">View on GitHub</a>
                     </div>
                 </div>
 
-                <!-- Project 3: E-Library Management System -->
+                <!-- Project 3: Virtual Pet Simulator -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Virtual Pet Simulator</h3>
+                        <span class="project-date">March 2025</span>
+                    </div>
+                    <p class="project-description">Designed and implemented an interactive Virtual Pet Simulator using JavaScript and OOP principles, featuring real-time state management and dynamic behavior with customizable attributes.</p>
+                    <div class="project-tech">
+                        <span class="tech-badge">JavaScript</span>
+                        <span class="tech-badge">HTML5</span>
+                        <span class="tech-badge">CSS3</span>
+                        <span class="tech-badge">OOP</span>
+                        <span class="tech-badge">Local Storage</span>
+                    </div>
+                    <ul class="project-features">
+                        <li>Interactive gameplay with feeding and care mechanics</li>
+                        <li>Real-time state management and data persistence</li>
+                        <li>Dynamic pet behavior and customizable attributes</li>
+                        <li>Event-driven programming architecture</li>
+                    </ul>
+                    <div class="project-links">
+                        <a href="https://github.com/Khushnood-Ali/Virtual-Pet-Simulator" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--sm external-link">View on GitHub</a>
+                    </div>
+                </div>
+
+                <!-- Other Projects -->
                 <div class="project-card">
                     <div class="project-header">
                         <h3>E-Library Management System</h3>
-                        <span class="project-date">March 2025</span>
+                        <span class="project-date">2025</span>
                     </div>
-                    <p class="project-description">Comprehensive library management solution with user authentication, book tracking, and administrative features.</p>
+                    <p class="project-description">Comprehensive library management solution with user authentication, book tracking, and administrative features built using PHP and MySQL.</p>
                     <div class="project-tech">
                         <span class="tech-badge">PHP</span>
                         <span class="tech-badge">JavaScript</span>
@@ -221,67 +314,138 @@
                         <span class="tech-badge">CSS</span>
                     </div>
                     <ul class="project-features">
-                        <li>Book borrowing system</li>
-                        <li>User management</li>
-                        <li>Search functionality</li>
-                        <li>Administrative dashboard</li>
-                        <li>Return tracking</li>
+                        <li>Book borrowing and return system</li>
+                        <li>User management and authentication</li>
+                        <li>Search functionality and catalog management</li>
+                        <li>Administrative dashboard and reporting</li>
                     </ul>
                     <div class="project-links">
-                        <a href="https://github.com/Khushnood-Ali/E-Library_management_system" target="_blank" class="btn btn--primary btn--sm">View on GitHub</a>
+                        <a href="https://github.com/Khushnood-Ali/E-Library_management_system" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--sm external-link">View on GitHub</a>
                     </div>
                 </div>
 
-                <!-- Project 4: Weather App -->
                 <div class="project-card">
                     <div class="project-header">
-                        <h3>Weather App - OpenWeatherMap Powered</h3>
-                        <span class="project-date">August 2025</span>
+                        <h3>SOUL - Random Chat App</h3>
+                        <span class="project-date">2023</span>
                     </div>
-                    <p class="project-description">Responsive weather application built with vanilla JavaScript, featuring real-time weather data and geolocation support.</p>
+                    <p class="project-description">Android application enabling users to connect and chat with random people worldwide, built with Java and featuring real-time messaging capabilities.</p>
                     <div class="project-tech">
-                        <span class="tech-badge">JavaScript</span>
-                        <span class="tech-badge">HTML5</span>
-                        <span class="tech-badge">CSS3</span>
-                        <span class="tech-badge">OpenWeatherMap API</span>
+                        <span class="tech-badge">Java</span>
+                        <span class="tech-badge">Android</span>
+                        <span class="tech-badge">Mobile Development</span>
                     </div>
                     <ul class="project-features">
-                        <li>Real-time weather data</li>
-                        <li>Geolocation support</li>
-                        <li>Temperature unit toggle (°C/°F)</li>
-                        <li>Air Quality Index (AQI)</li>
-                        <li>Keyboard shortcuts</li>
-                        <li>Responsive design</li>
+                        <li>Random user matching algorithm</li>
+                        <li>Real-time messaging functionality</li>
+                        <li>User-friendly mobile interface</li>
+                        <li>Cross-platform compatibility</li>
                     </ul>
                     <div class="project-links">
-                        <a href="https://github.com/Khushnood-Ali/Weather-APP" target="_blank" class="btn btn--primary btn--sm">View on GitHub</a>
+                        <a href="https://github.com/Khushnood-Ali/SOUL" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--sm external-link">View on GitHub</a>
                     </div>
                 </div>
-
-                <!-- Project 5: Virtual Pet Simulator -->
                 <div class="project-card">
                     <div class="project-header">
-                        <h3>Virtual Pet Simulator</h3>
-                        <span class="project-date">August 2025</span>
+                        <h3>Portfolio Website</h3>
+                        <span class="project-date">2025</span>
                     </div>
-                    <p class="project-description">Interactive web-based virtual pet game with comprehensive care mechanics, achievements, and persistent game state.</p>
+                    <p class="project-description">
+                        A modern, responsive personal portfolio website built to showcase my projects, skills, certifications, and professional journey. 
+                        Designed with clean UI, fast performance, and optimized for SEO to enhance online presence.
+                    </p>
                     <div class="project-tech">
+                        <span class="tech-badge">HTML</span>
+                        <span class="tech-badge">CSS</span>
                         <span class="tech-badge">JavaScript</span>
-                        <span class="tech-badge">HTML5</span>
-                        <span class="tech-badge">CSS3</span>
-                        <span class="tech-badge">Local Storage</span>
+                        <span class="tech-badge">Responsive Design</span>
                     </div>
                     <ul class="project-features">
-                        <li>Interactive pet care system</li>
-                        <li>Dynamic attribute system</li>
-                        <li>Achievement system</li>
-                        <li>Day/night cycle simulation</li>
-                        <li>Local storage persistence</li>
-                        <li>Animated pet character</li>
+                        <li>Fully responsive layout for all screen sizes</li>
+                        <li>Integrated smooth navigation and interactive UI components</li>
+                        <li>SEO-optimized for better visibility</li>
+                        <li>Fast load times and performance optimization</li>
                     </ul>
                     <div class="project-links">
-                        <a href="https://github.com/Khushnood-Ali/Virtual-Pet-Simulator" target="_blank" class="btn btn--primary btn--sm">View on GitHub</a>
+                        <a href="https://khushnood-ali.github.io/My-Portfolio/" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--sm external-link">View Live</a>
+                        <a href="https://github.com/Khushnood-Ali/My-Portfolio" target="_blank" rel="noopener noreferrer" class="btn btn--secondary btn--sm external-link">View on GitHub</a>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Publications Section -->
+    <section id="publications" class="publications">
+        <div class="container">
+            <h2 class="section-title">Research Publications</h2>
+            <div class="publications-grid">
+                <div class="publication-card featured">
+                    <div class="publication-header">
+                        <div class="publication-venue">IEEE Xplore 2025</div>
+                        <div class="publication-date">February 2025</div>
+                        <div class="publication-status status--success">Published</div>
+                    </div>
+                    <h3 class="publication-title">Cardiovascular Disease Prediction Using Machine Learning and XAI</h3>
+                    <p class="publication-description">Developed a machine learning model for cardiovascular disease prediction using explainable AI (XAI) techniques. Enhanced model interpretability, enabling transparent decision-making in medical diagnostics.</p>
+                    
+                    <div class="publication-keywords">
+                        <span class="keyword-tag">Machine Learning</span>
+                        <span class="keyword-tag">Explainable AI</span>
+                        <span class="keyword-tag">Cardiovascular Disease</span>
+                        <span class="keyword-tag">Medical Diagnostics</span>
+                        <span class="keyword-tag">Healthcare AI</span>
+                    </div>
+                    
+                    <div class="publication-actions">
+                        <button class="btn btn--primary btn--sm" onclick="toggleAbstract()">Read Abstract</button>
+                        <a href="https://ieeexplore.ieee.org/document/10932526" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--sm external-link">View on IEEE Xplore</a>
+                    </div>
+                    
+                    <div class="publication-abstract hidden" id="publication-abstract">
+                        <h4>Abstract</h4>
+                        <p>Heart illness may be a critical wellbeing condition that includes an eminent effect on worldwide mortality, particularly among more seasoned people. Per WHO information, a stunning 17. 9 million people pass absent each year due to heart illness, showing a concerning increment within the number of cases. Distinguishing issues ahead of time through the application of machine learning strategies such as K-Nearest Neighbor (KNN), Random Forest, Decision Tree,Logistic Regression, Support Vector Machine, and Naive Bayes has the potential to upgrade determining accuracy and decrease the event of human botches. This think about evaluates different machine learning calculations on datasets that incorporate traits like age, sex, sort of chest torment, blood weight, and glucose levels. Through the utilization of Logistic Regression, a forecast precision of 83. 90% was accomplished. These improvements have the potential to progress the early location and treatment viability, eventually profiting pending healthcare strategies.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications" class="certifications">
+        <div class="container">
+            <h2 class="section-title">Certifications & Achievements</h2>
+            <div class="certifications-grid">
+                <div class="certification-card">
+                    <div class="cert-header">
+                        <div class="cert-icon">🛡️</div>
+                        <div class="cert-year">2024</div>
+                    </div>
+                    <h3>Certified Ethical Hacker (CEH)</h3>
+                    <p class="cert-issuer">EC-Council</p>
+                    <p class="cert-number">Certificate No: ECC4567182903</p>
+                    <p class="cert-description">Advanced cybersecurity certification covering penetration testing, vulnerability assessment, and ethical hacking methodologies.</p>
+                </div>
+                
+                <div class="certification-card">
+                    <div class="cert-header">
+                        <div class="cert-icon">🏗️</div>
+                        <div class="cert-year">2023</div>
+                    </div>
+                    <h3>Data Structures</h3>
+                    <p class="cert-issuer">University of California, San Diego</p>
+                    <p class="cert-description">Comprehensive course covering fundamental data structures, algorithms, and computational complexity analysis.</p>
+                </div>
+                
+                <div class="certification-card">
+                    <div class="cert-header">
+                        <div class="cert-icon">🧠</div>
+                        <div class="cert-year">2024</div>
+                    </div>
+                    <h3>Improving Deep Neural Networks</h3>
+                    <p class="cert-subtitle">Hyperparameter Tuning, Regularization and Optimization</p>
+                    <p class="cert-issuer">DeepLearning.AI</p>
+                    <p class="cert-description">Advanced deep learning course focusing on optimization techniques, regularization methods, and hyperparameter tuning.</p>
                 </div>
             </div>
         </div>
@@ -294,23 +458,39 @@
             <div class="contact-content">
                 <div class="contact-info">
                     <h3>Let's Work Together</h3>
-                    <p>I'm always interested in hearing about new opportunities and challenging projects. Whether you have a project in mind or just want to chat about technology, feel free to reach out!</p>
+                    <p>I'm always interested in hearing about new opportunities, research collaborations, and challenging projects. Whether you have a project in mind or want to discuss AI/ML research, feel free to reach out!</p>
                     <div class="contact-links">
                         <a href="mailto:khushnoodali344@gmail.com" class="contact-link">
                             <span class="contact-icon">✉</span>
                             khushnoodali344@gmail.com
                         </a>
-                        <a href="https://github.com/Khushnood-Ali/" target="_blank" class="contact-link">
+                        <a href="tel:+918755895063" class="contact-link">
+                            <span class="contact-icon">📱</span>
+                            +91 87558 95063
+                        </a>
+                        <a href="https://github.com/Khushnood-Ali/" target="_blank" rel="noopener noreferrer" class="contact-link external-link">
                             <span class="contact-icon">🔗</span>
                             GitHub Profile
                         </a>
-                        <a href="https://www.linkedin.com/in/khushnood-ali-4798b0304/" target="_blank" class="contact-link">
+                        <a href="https://linkedin.com/in/khushnood-ali" target="_blank" rel="noopener noreferrer" class="contact-link external-link">
                             <span class="contact-icon">💼</span>
                             LinkedIn Profile
                         </a>
+                        <a href="https://leetcode.com/khushnood-ali" target="_blank" rel="noopener noreferrer" class="contact-link external-link">
+                            <span class="contact-icon">💻</span>
+                            LeetCode Profile
+                        </a>
                         <div class="contact-link">
                             <span class="contact-icon">📍</span>
-                            India
+                            Greater Noida, India
+                        </div>
+                    </div>
+                    
+                    <div class="resume-section">
+                        <h4>Resume</h4>
+                        <div class="resume-buttons">
+                            <button class="btn btn--primary btn--sm" onclick="viewResume()">View Resume</button>
+                            <button class="btn btn--outline btn--sm" onclick="downloadResume()">Download Resume</button>
                         </div>
                     </div>
                 </div>
@@ -340,6 +520,24 @@
         </div>
     </section>
 
+    <!-- Resume Modal -->
+    <div class="modal hidden" id="resume-modal">
+        <div class="modal-backdrop" onclick="closeResumeModal()"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Resume - Khushnood Ali</h3>
+                <button class="modal-close" onclick="closeResumeModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <iframe src="https://drive.google.com/file/d/17mF1BZUB5oR4WjnyaWCUcN5nnc2JPuSm/preview" width="100%" height="500px" style="border:none;"></iframe>
+                <div class="resume-actions" style="margin-top: 15px; display: flex; gap: 10px;">
+                    <a href="https://drive.google.com/file/d/17mF1BZUB5oR4WjnyaWCUcN5nnc2JPuSm/view?usp=sharing" target="_blank" class="btn btn--primary">Open in New Tab</a>
+                    <a href="https://drive.google.com/uc?export=download&id=17mF1BZUB5oR4WjnyaWCUcN5nnc2JPuSm" class="btn btn--secondary">Download PDF</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <!-- Scroll to Top Button -->
     <button class="scroll-to-top" id="scroll-to-top">
         ↑
