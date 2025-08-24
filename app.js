@@ -1,4 +1,4 @@
-// Portfolio App JavaScript
+// Enhanced Portfolio App JavaScript
 
 document.addEventListener('DOMContentLoaded', function() {
     // DOM Elements
@@ -9,8 +9,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const scrollToTopBtn = document.getElementById('scroll-to-top');
     const contactForm = document.getElementById('contact-form');
     const submitBtn = document.getElementById('submit-btn');
-    const btnText = submitBtn.querySelector('.btn-text');
-    const btnLoader = submitBtn.querySelector('.btn-loader');
+    const btnText = submitBtn?.querySelector('.btn-text');
+    const btnLoader = submitBtn?.querySelector('.btn-loader');
+    const resumeModal = document.getElementById('resume-modal');
+
+    // Cache for form data (in memory since localStorage is not available)
+    let formDataCache = {};
 
     // Initialize hero buttons
     function initHeroButtons() {
@@ -80,19 +84,80 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Fix GitHub links
+    // Resume modal functionality
+    function initResumeModal() {
+        const resumeViewURL = "https://drive.google.com/file/d/17mF1BZUB5oR4WjnyaWCUcN5nnc2JPuSm/view?usp=sharing";
+        const resumeDownloadURL = "https://drive.google.com/uc?export=download&id=17mF1BZUB5oR4WjnyaWCUcN5nnc2JPuSm";
+
+        // Make functions globally available
+        window.openResumeModal = function() {
+            if (resumeModal) {
+                resumeModal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            }
+        };
+
+        window.closeResumeModal = function() {
+            if (resumeModal) {
+                resumeModal.classList.add('hidden');
+                document.body.style.overflow = '';
+            }
+        };
+
+        window.viewResume = function() {
+            // Open the resume in a new tab
+            window.open(resumeViewURL, '_blank');
+        };
+
+        window.downloadResume = function() {
+            // Trigger download of the resume
+            const link = document.createElement('a');
+            link.href = resumeDownloadURL;
+            link.download = 'Khushnood_Ali_Resume.pdf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        };
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && resumeModal && !resumeModal.classList.contains('hidden')) {
+                window.closeResumeModal();
+            }
+        });
+    }
+
+
+    // Publications abstract toggle
+    function initPublications() {
+        window.toggleAbstract = function() {
+            const abstract = document.getElementById('publication-abstract');
+            const button = event.target;
+            
+            if (abstract) {
+                if (abstract.classList.contains('hidden')) {
+                    abstract.classList.remove('hidden');
+                    button.textContent = 'Hide Abstract';
+                } else {
+                    abstract.classList.add('hidden');
+                    button.textContent = 'Read Abstract';
+                }
+            }
+        };
+    }
+
+    // Fix GitHub and external links
     function initProjectLinks() {
-        const githubLinks = document.querySelectorAll('a[href*="github.com"]');
-        githubLinks.forEach(link => {
-            // Ensure target="_blank" is set
+        const externalLinks = document.querySelectorAll('a[href*="github.com"], a[href*="linkedin.com"], a[href*="leetcode.com"], a[target="_blank"]');
+        externalLinks.forEach(link => {
+            // Ensure target="_blank" and rel attributes are set
             link.setAttribute('target', '_blank');
             link.setAttribute('rel', 'noopener noreferrer');
             
             // Add click handler to ensure it works
             link.addEventListener('click', function(e) {
                 // Let the default behavior handle the navigation
-                // Just make sure it's not prevented
-                console.log('Opening GitHub link:', this.href);
+                console.log('Opening external link:', this.href);
             });
         });
     }
@@ -140,7 +205,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Update active navigation link based on scroll position
     function updateActiveNavLink() {
-        const sections = ['home', 'about', 'skills', 'projects', 'contact'];
+        const sections = ['home', 'about', 'experience', 'skills', 'projects', 'publications', 'certifications', 'contact'];
         const scrollY = window.scrollY + 100; // Offset for better detection
 
         sections.forEach(sectionId => {
@@ -177,7 +242,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function initContactForm() {
         if (!contactForm) return;
 
-        // Load saved form data from local storage
+        // Load saved form data from memory cache
         loadFormData();
 
         // Save form data on input
@@ -193,9 +258,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Save form data to local storage (but respecting the restriction, we'll use a simple object)
-    let formDataCache = {};
-
+    // Save form data to memory cache
     function saveFormData() {
         if (!contactForm) return;
         
@@ -209,7 +272,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function loadFormData() {
-        // Since we can't use localStorage, we'll just keep data in memory during the session
+        // Load data from memory cache during the session
         if (formDataCache.name) {
             const nameField = document.getElementById('name');
             const emailField = document.getElementById('email');
@@ -317,7 +380,7 @@ document.addEventListener('DOMContentLoaded', function() {
         notification.className = `notification notification--${type}`;
         notification.innerHTML = `
             <div class="notification-content" style="display: flex; align-items: center; gap: 12px;">
-                <span class="notification-icon">${type === 'success' ? '✅' : '❌'}</span>
+                <span class="notification-icon">${getNotificationIcon(type)}</span>
                 <span class="notification-message" style="flex: 1;">${message}</span>
                 <button class="notification-close" onclick="this.parentElement.parentElement.remove()" style="background: none; border: none; color: white; font-size: 18px; cursor: pointer; padding: 0; width: 20px; height: 20px;">×</button>
             </div>
@@ -329,7 +392,7 @@ document.addEventListener('DOMContentLoaded', function() {
             top: 100px;
             right: 20px;
             z-index: 10000;
-            background: ${type === 'success' ? 'var(--color-success)' : 'var(--color-error)'};
+            background: ${getNotificationColor(type)};
             color: white;
             padding: 16px 20px;
             border-radius: 8px;
@@ -361,6 +424,26 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 5000);
     }
 
+    function getNotificationIcon(type) {
+        switch(type) {
+            case 'success': return '✅';
+            case 'error': return '❌';
+            case 'warning': return '⚠️';
+            case 'info': return 'ℹ️';
+            default: return 'ℹ️';
+        }
+    }
+
+    function getNotificationColor(type) {
+        switch(type) {
+            case 'success': return 'var(--color-success)';
+            case 'error': return 'var(--color-error)';
+            case 'warning': return 'var(--color-warning)';
+            case 'info': return 'var(--color-info)';
+            default: return 'var(--color-info)';
+        }
+    }
+
     // Reset form
     function resetForm() {
         if (contactForm) {
@@ -371,7 +454,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Intersection Observer for animations
     function initScrollAnimations() {
-        const animatedElements = document.querySelectorAll('.card, .skill-category, .project-card, .stat-item');
+        const animatedElements = document.querySelectorAll('.card, .skill-category, .project-card, .stat-item, .experience-item, .publication-card, .certification-card');
         
         const observerOptions = {
             threshold: 0.1,
@@ -388,19 +471,19 @@ document.addEventListener('DOMContentLoaded', function() {
         }, observerOptions);
 
         // Set initial styles and observe elements
-        animatedElements.forEach(el => {
+        animatedElements.forEach((el, index) => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(30px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            el.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
             observer.observe(el);
         });
     }
 
-    // Project card hover effects
-    function initProjectCardEffects() {
-        const projectCards = document.querySelectorAll('.project-card');
+    // Interactive card effects
+    function initCardEffects() {
+        const interactiveCards = document.querySelectorAll('.project-card, .certification-card, .experience-item');
         
-        projectCards.forEach(card => {
+        interactiveCards.forEach(card => {
             card.addEventListener('mouseenter', function() {
                 this.style.transform = 'translateY(-8px)';
             });
@@ -426,25 +509,98 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Initialize performance optimization
+    // Stats counter animation
+    function initStatsAnimation() {
+        const statNumbers = document.querySelectorAll('.stat-number, .stat-value');
+        
+        const animateCounter = (element) => {
+            const target = parseFloat(element.textContent);
+            const duration = 2000; // 2 seconds
+            const steps = 60;
+            const stepValue = target / steps;
+            let current = 0;
+            
+            const timer = setInterval(() => {
+                current += stepValue;
+                if (current >= target) {
+                    element.textContent = element.textContent.includes('.') ? target.toFixed(1) : Math.floor(target);
+                    clearInterval(timer);
+                } else {
+                    element.textContent = element.textContent.includes('.') ? current.toFixed(1) : Math.floor(current);
+                }
+            }, duration / steps);
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.dataset.animated) {
+                    entry.target.dataset.animated = 'true';
+                    animateCounter(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        statNumbers.forEach(stat => {
+            observer.observe(stat);
+        });
+    }
+
+    // Hero text typing effect
+    function initTypingEffect() {
+        const heroTitle = document.querySelector('.hero-title');
+        if (heroTitle) {
+            const originalText = heroTitle.textContent;
+            heroTitle.textContent = '';
+            
+            let index = 0;
+            const typeText = () => {
+                if (index < originalText.length) {
+                    heroTitle.textContent += originalText.charAt(index);
+                    index++;
+                    setTimeout(typeText, 100);
+                }
+            };
+            
+            // Start typing effect after a short delay
+            setTimeout(typeText, 500);
+        }
+    }
+
+    // Performance optimizations
     function initPerformanceOptimizations() {
         // Debounce resize events
         let resizeTimeout;
         window.addEventListener('resize', function() {
             clearTimeout(resizeTimeout);
             resizeTimeout = setTimeout(function() {
-                // Handle resize-specific updates here if needed
                 updateActiveNavLink();
             }, 250);
         });
 
         // Preload critical sections
-        const criticalSections = document.querySelectorAll('#home, #about, #skills');
+        const criticalSections = document.querySelectorAll('#home, #about, #experience');
         criticalSections.forEach(section => {
             if (section) {
                 section.style.willChange = 'transform';
             }
         });
+
+        // Lazy load images if any are added later
+        if ('IntersectionObserver' in window) {
+            const lazyImages = document.querySelectorAll('img[data-src]');
+            const imageObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.removeAttribute('data-src');
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+            
+            lazyImages.forEach(img => imageObserver.observe(img));
+        }
     }
 
     // Error handling
@@ -461,26 +617,86 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Keyboard shortcuts
+    function initKeyboardShortcuts() {
+        document.addEventListener('keydown', function(e) {
+            // Only activate shortcuts when not in input fields
+            if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+                return;
+            }
+
+            switch(e.key) {
+                case '1':
+                    scrollToSection('home');
+                    break;
+                case '2':
+                    scrollToSection('about');
+                    break;
+                case '3':
+                    scrollToSection('experience');
+                    break;
+                case '4':
+                    scrollToSection('skills');
+                    break;
+                case '5':
+                    scrollToSection('projects');
+                    break;
+                case '6':
+                    scrollToSection('publications');
+                    break;
+                case '7':
+                    scrollToSection('certifications');
+                    break;
+                case '8':
+                    scrollToSection('contact');
+                    break;
+                case 'r':
+                case 'R':
+                    if (e.ctrlKey || e.metaKey) {
+                        e.preventDefault();
+                        window.openResumeModal();
+                    }
+                    break;
+            }
+        });
+    }
+
     // Initialize all functionality
     function init() {
         try {
-            initHeroButtons();        // Fix hero navigation buttons
-            initNavigation();         // Fix navigation menu
-            initProjectLinks();       // Fix GitHub links
-            initScrollEffects();
-            initScrollToTop();
-            initContactForm();
-            initScrollAnimations();
-            initProjectCardEffects();
-            initSkillBadgeEffects();
-            initPerformanceOptimizations();
-            initErrorHandling();
+            initHeroButtons();          // Fix hero navigation buttons
+            initNavigation();           // Navigation menu functionality
+            initResumeModal();          // Resume modal functionality
+            initPublications();         // Publications abstract toggle
+            initProjectLinks();         // Fix external links
+            initScrollEffects();        // Scroll effects and navbar
+            initScrollToTop();          // Scroll to top button
+            initContactForm();          // Contact form handling
+            initScrollAnimations();     // Scroll-based animations
+            initCardEffects();          // Interactive card effects
+            initSkillBadgeEffects();    // Skill badge animations
+            initStatsAnimation();       // Stats counter animation
+            initTypingEffect();         // Hero title typing effect
+            initPerformanceOptimizations(); // Performance optimizations
+            initErrorHandling();        // Error handling
+            initKeyboardShortcuts();    // Keyboard shortcuts
             
-            console.log('Portfolio app initialized successfully');
+            console.log('Enhanced portfolio app initialized successfully');
         } catch (error) {
             console.error('Error initializing portfolio app:', error);
         }
     }
+
+    // Make some functions globally available for HTML onclick handlers
+    window.portfolioApp = {
+        showNotification: showNotification,
+        scrollToSection: scrollToSection,
+        openResumeModal: window.openResumeModal,
+        closeResumeModal: window.closeResumeModal,
+        viewResume: window.viewResume,
+        downloadResume: window.downloadResume,
+        toggleAbstract: window.toggleAbstract
+    };
 
     // Start the app
     init();
@@ -514,19 +730,28 @@ if (!('scrollBehavior' in document.documentElement.style)) {
     document.documentElement.style.scrollBehavior = 'auto';
 }
 
-// Export functions for potential external use
-window.portfolioApp = {
-    showNotification: function(message, type) {
-        console.log(`Notification: ${message} (${type})`);
-    },
-    scrollToSection: function(sectionId) {
-        const section = document.getElementById(sectionId);
-        if (section) {
-            const offsetTop = section.offsetTop - 80;
-            window.scrollTo({
-                top: offsetTop,
-                behavior: 'smooth'
-            });
+// Additional utility functions
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+function throttle(func, limit) {
+    let inThrottle;
+    return function() {
+        const args = arguments;
+        const context = this;
+        if (!inThrottle) {
+            func.apply(context, args);
+            inThrottle = true;
+            setTimeout(() => inThrottle = false, limit);
         }
     }
-};
+}
