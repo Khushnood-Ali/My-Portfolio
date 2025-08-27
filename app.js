@@ -86,8 +86,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Resume modal functionality
     function initResumeModal() {
-        const resumeViewURL = "https://drive.google.com/file/d/17mF1BZUB5oR4WjnyaWCUcN5nnc2JPuSm/view?usp=sharing";
-        const resumeDownloadURL = "https://drive.google.com/uc?export=download&id=17mF1BZUB5oR4WjnyaWCUcN5nnc2JPuSm";
+        const resumeViewURL = "https://drive.google.com/file/d/1z-Jmhvsjsmeoy1VAcuTKyKgkYyZpb7J6/view?usp=sharing";
+        const resumeDownloadURL = "https://drive.google.com/uc?export=download&id=1z-Jmhvsjsmeoy1VAcuTKyKgkYyZpb7J6/view?usp";
 
         // Make functions globally available
         window.openResumeModal = function() {
