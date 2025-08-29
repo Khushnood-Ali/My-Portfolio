@@ -1,7 +1,4 @@
-// Enhanced Portfolio App JavaScript
-
 document.addEventListener('DOMContentLoaded', function() {
-    // DOM Elements
     const navbar = document.getElementById('navbar');
     const navToggle = document.getElementById('nav-toggle');
     const navMenu = document.getElementById('nav-menu');
@@ -12,11 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const btnText = submitBtn?.querySelector('.btn-text');
     const btnLoader = submitBtn?.querySelector('.btn-loader');
     const resumeModal = document.getElementById('resume-modal');
-
-    // Cache for form data (in memory since localStorage is not available)
     let formDataCache = {};
-
-    // Initialize hero buttons
     function initHeroButtons() {
         const viewProjectsBtn = document.querySelector('a[href="#projects"]');
         const contactMeBtn = document.querySelector('a[href="#contact"]');
@@ -35,8 +28,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     }
-
-    // Utility function to scroll to section
     function scrollToSection(sectionId) {
         const targetSection = document.getElementById(sectionId);
         if (targetSection) {
@@ -47,10 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     }
-
-    // Navigation functionality
     function initNavigation() {
-        // Mobile menu toggle
         if (navToggle && navMenu) {
             navToggle.addEventListener('click', function(e) {
                 e.stopPropagation();
@@ -58,24 +46,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 navToggle.classList.toggle('active');
             });
         }
-
-        // Close mobile menu when clicking on links
         navLinks.forEach(link => {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
                 const targetId = this.getAttribute('href');
                 const sectionId = targetId.replace('#', '');
                 
-                // Close mobile menu
                 if (navMenu) navMenu.classList.remove('active');
                 if (navToggle) navToggle.classList.remove('active');
                 
-                // Scroll to section
                 scrollToSection(sectionId);
             });
         });
 
-        // Close mobile menu when clicking outside
         document.addEventListener('click', function(e) {
             if (navbar && !navbar.contains(e.target)) {
                 if (navMenu) navMenu.classList.remove('active');
@@ -84,12 +67,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Resume modal functionality
     function initResumeModal() {
         const resumeViewURL = "https://drive.google.com/file/d/10XrO7nhJvdvdoRgEVx-kFmJSjrHpgbiQ/view?usp=drive_link";
         const resumeDownloadURL = "https://drive.google.com/uc?export=download&id=10XrO7nhJvdvdoRgEVx-kFmJSjrHpgbiQ";
 
-        // Make functions globally available
         window.openResumeModal = function() {
             if (resumeModal) {
                 resumeModal.classList.remove('hidden');
@@ -105,12 +86,10 @@ document.addEventListener('DOMContentLoaded', function() {
         };
 
         window.viewResume = function() {
-            // Open the resume in a new tab
             window.open(resumeViewURL, '_blank');
         };
 
         window.downloadResume = function() {
-            // Trigger download of the resume
             const link = document.createElement('a');
             link.href = resumeDownloadURL;
             link.download = 'Khushnood_Ali_Resume.pdf';
@@ -119,7 +98,6 @@ document.addEventListener('DOMContentLoaded', function() {
             document.body.removeChild(link);
         };
 
-        // Close modal with Escape key
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape' && resumeModal && !resumeModal.classList.contains('hidden')) {
                 window.closeResumeModal();
@@ -128,7 +106,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 
-    // Publications abstract toggle
     function initPublications() {
         window.toggleAbstract = function() {
             const abstract = document.getElementById('publication-abstract');
@@ -146,30 +123,24 @@ document.addEventListener('DOMContentLoaded', function() {
         };
     }
 
-    // Fix GitHub and external links
     function initProjectLinks() {
         const externalLinks = document.querySelectorAll('a[href*="github.com"], a[href*="linkedin.com"], a[href*="leetcode.com"], a[target="_blank"]');
         externalLinks.forEach(link => {
-            // Ensure target="_blank" and rel attributes are set
             link.setAttribute('target', '_blank');
             link.setAttribute('rel', 'noopener noreferrer');
             
-            // Add click handler to ensure it works
             link.addEventListener('click', function(e) {
-                // Let the default behavior handle the navigation
                 console.log('Opening external link:', this.href);
             });
         });
     }
 
-    // Scroll effects
     function initScrollEffects() {
         let ticking = false;
 
         function updateScrollEffects() {
             const scrollY = window.scrollY;
 
-            // Navbar background opacity
             if (navbar) {
                 if (scrollY > 50) {
                     navbar.style.background = 'rgba(19, 52, 59, 0.98)';
@@ -178,7 +149,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
 
-            // Show/hide scroll to top button
             if (scrollToTopBtn) {
                 if (scrollY > 300) {
                     scrollToTopBtn.classList.add('visible');
@@ -187,7 +157,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
 
-            // Update active navigation link
             updateActiveNavLink();
 
             ticking = false;
@@ -203,11 +172,9 @@ document.addEventListener('DOMContentLoaded', function() {
         window.addEventListener('scroll', requestScrollUpdate);
     }
 
-    // Update active navigation link based on scroll position
     function updateActiveNavLink() {
         const sections = ['home', 'about', 'experience', 'skills', 'projects', 'publications', 'certifications', 'contact'];
-        const scrollY = window.scrollY + 100; // Offset for better detection
-
+        const scrollY = window.scrollY + 100; 
         sections.forEach(sectionId => {
             const section = document.getElementById(sectionId);
             const navLink = document.querySelector(`a[href="#${sectionId}"]`);
@@ -217,16 +184,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 const sectionHeight = section.offsetHeight;
                 
                 if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
-                    // Remove active class from all links
                     navLinks.forEach(link => link.classList.remove('active'));
-                    // Add active class to current link
                     navLink.classList.add('active');
                 }
             }
         });
     }
 
-    // Scroll to top functionality
     function initScrollToTop() {
         if (scrollToTopBtn) {
             scrollToTopBtn.addEventListener('click', function() {
@@ -238,27 +202,22 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Contact form functionality
     function initContactForm() {
         if (!contactForm) return;
 
-        // Load saved form data from memory cache
         loadFormData();
 
-        // Save form data on input
         const formInputs = contactForm.querySelectorAll('input, textarea');
         formInputs.forEach(input => {
             input.addEventListener('input', saveFormData);
         });
 
-        // Form submission
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
             handleFormSubmission();
         });
     }
 
-    // Save form data to memory cache
     function saveFormData() {
         if (!contactForm) return;
         
@@ -272,7 +231,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function loadFormData() {
-        // Load data from memory cache during the session
         if (formDataCache.name) {
             const nameField = document.getElementById('name');
             const emailField = document.getElementById('email');
@@ -286,17 +244,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Handle form submission
     function handleFormSubmission() {
-        // Validate form
         if (!validateForm()) {
             return;
         }
 
-        // Show loading state
         showLoadingState();
 
-        // Simulate form submission (since we can't actually send emails)
         setTimeout(() => {
             hideLoadingState();
             showSuccessMessage();
@@ -304,7 +258,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 2000);
     }
 
-    // Form validation
     function validateForm() {
         const nameField = document.getElementById('name');
         const emailField = document.getElementById('email');
@@ -339,13 +292,11 @@ document.addEventListener('DOMContentLoaded', function() {
         return true;
     }
 
-    // Email validation
     function isValidEmail(email) {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
     }
 
-    // Show loading state
     function showLoadingState() {
         if (submitBtn) {
             submitBtn.disabled = true;
@@ -354,7 +305,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Hide loading state
     function hideLoadingState() {
         if (submitBtn) {
             submitBtn.disabled = false;
@@ -363,19 +313,15 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Show success message
     function showSuccessMessage() {
         showNotification('Thank you! Your message has been sent successfully.', 'success');
     }
 
-    // Show error message
     function showErrorMessage(message) {
         showNotification(message, 'error');
     }
 
-    // Show notification
     function showNotification(message, type) {
-        // Create notification element
         const notification = document.createElement('div');
         notification.className = `notification notification--${type}`;
         notification.innerHTML = `
@@ -386,7 +332,6 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         `;
 
-        // Add styles
         notification.style.cssText = `
             position: fixed;
             top: 100px;
@@ -403,15 +348,12 @@ document.addEventListener('DOMContentLoaded', function() {
             word-wrap: break-word;
         `;
 
-        // Add notification to DOM
         document.body.appendChild(notification);
 
-        // Animate in
         setTimeout(() => {
             notification.style.transform = 'translateX(0)';
         }, 100);
 
-        // Auto remove after 5 seconds
         setTimeout(() => {
             if (notification.parentNode) {
                 notification.style.transform = 'translateX(100%)';
@@ -444,7 +386,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Reset form
     function resetForm() {
         if (contactForm) {
             contactForm.reset();
@@ -452,7 +393,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Intersection Observer for animations
     function initScrollAnimations() {
         const animatedElements = document.querySelectorAll('.card, .skill-category, .project-card, .stat-item, .experience-item, .publication-card, .certification-card');
         
@@ -470,7 +410,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }, observerOptions);
 
-        // Set initial styles and observe elements
         animatedElements.forEach((el, index) => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(30px)';
@@ -479,7 +418,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Interactive card effects
     function initCardEffects() {
         const interactiveCards = document.querySelectorAll('.project-card, .certification-card, .experience-item');
         
@@ -494,7 +432,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Skill badge hover effects
     function initSkillBadgeEffects() {
         const skillBadges = document.querySelectorAll('.skill-badge');
         
@@ -509,7 +446,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Stats counter animation
     function initStatsAnimation() {
         const statNumbers = document.querySelectorAll('.stat-number, .stat-value');
         
@@ -545,7 +481,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Hero text typing effect
     function initTypingEffect() {
         const heroTitle = document.querySelector('.hero-title');
         if (heroTitle) {
@@ -561,14 +496,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             };
             
-            // Start typing effect after a short delay
             setTimeout(typeText, 500);
         }
     }
 
-    // Performance optimizations
     function initPerformanceOptimizations() {
-        // Debounce resize events
         let resizeTimeout;
         window.addEventListener('resize', function() {
             clearTimeout(resizeTimeout);
@@ -577,7 +509,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 250);
         });
 
-        // Preload critical sections
         const criticalSections = document.querySelectorAll('#home, #about, #experience');
         criticalSections.forEach(section => {
             if (section) {
@@ -585,7 +516,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        // Lazy load images if any are added later
         if ('IntersectionObserver' in window) {
             const lazyImages = document.querySelectorAll('img[data-src]');
             const imageObserver = new IntersectionObserver((entries) => {
@@ -603,24 +533,19 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Error handling
     function initErrorHandling() {
         window.addEventListener('error', function(event) {
             console.error('Portfolio app error:', event.error);
-            // Could show a user-friendly error message here
         });
 
-        // Handle unhandled promise rejections
         window.addEventListener('unhandledrejection', function(event) {
             console.error('Unhandled promise rejection:', event.reason);
             event.preventDefault();
         });
     }
 
-    // Keyboard shortcuts
     function initKeyboardShortcuts() {
         document.addEventListener('keydown', function(e) {
-            // Only activate shortcuts when not in input fields
             if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
                 return;
             }
@@ -661,25 +586,24 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Initialize all functionality
     function init() {
         try {
-            initHeroButtons();          // Fix hero navigation buttons
-            initNavigation();           // Navigation menu functionality
-            initResumeModal();          // Resume modal functionality
-            initPublications();         // Publications abstract toggle
-            initProjectLinks();         // Fix external links
-            initScrollEffects();        // Scroll effects and navbar
-            initScrollToTop();          // Scroll to top button
-            initContactForm();          // Contact form handling
-            initScrollAnimations();     // Scroll-based animations
-            initCardEffects();          // Interactive card effects
-            initSkillBadgeEffects();    // Skill badge animations
-            initStatsAnimation();       // Stats counter animation
-            initTypingEffect();         // Hero title typing effect
-            initPerformanceOptimizations(); // Performance optimizations
-            initErrorHandling();        // Error handling
-            initKeyboardShortcuts();    // Keyboard shortcuts
+            initHeroButtons();         
+            initNavigation();           
+            initResumeModal();          
+            initPublications();         
+            initProjectLinks();         
+            initScrollEffects();        
+            initScrollToTop();         
+            initContactForm();          
+            initScrollAnimations();     
+            initCardEffects();          
+            initSkillBadgeEffects();    
+            initStatsAnimation();       
+            initTypingEffect();         
+            initPerformanceOptimizations(); 
+            initErrorHandling();        
+            initKeyboardShortcuts();    
             
             console.log('Enhanced portfolio app initialized successfully');
         } catch (error) {
@@ -687,7 +611,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Make some functions globally available for HTML onclick handlers
     window.portfolioApp = {
         showNotification: showNotification,
         scrollToSection: scrollToSection,
@@ -698,11 +621,9 @@ document.addEventListener('DOMContentLoaded', function() {
         toggleAbstract: window.toggleAbstract
     };
 
-    // Start the app
     init();
 });
 
-// Smooth scroll polyfill for older browsers
 if (!('scrollBehavior' in document.documentElement.style)) {
     const smoothScrollPolyfill = function(target, duration = 1000) {
         const start = window.pageYOffset;
@@ -713,7 +634,6 @@ if (!('scrollBehavior' in document.documentElement.style)) {
             const elapsedTime = currentTime - startTime;
             const progress = Math.min(elapsedTime / duration, 1);
             
-            // Easing function (ease-out)
             const ease = 1 - Math.pow(1 - progress, 3);
             
             window.scrollTo(0, start + change * ease);
@@ -726,11 +646,9 @@ if (!('scrollBehavior' in document.documentElement.style)) {
         requestAnimationFrame(animateScroll);
     };
     
-    // Override smooth scroll behavior
     document.documentElement.style.scrollBehavior = 'auto';
 }
 
-// Additional utility functions
 function debounce(func, wait) {
     let timeout;
     return function executedFunction(...args) {
