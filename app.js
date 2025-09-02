@@ -68,8 +68,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function initResumeModal() {
-        const resumeViewURL = "https://drive.google.com/file/d/10XrO7nhJvdvdoRgEVx-kFmJSjrHpgbiQ/view?usp=drive_link";
-        const resumeDownloadURL = "https://drive.google.com/uc?export=download&id=10XrO7nhJvdvdoRgEVx-kFmJSjrHpgbiQ";
+        const resumeViewURL = "https://drive.google.com/file/d/1b9eEskFHoHJ6PbhVvl9HPKwSCQW1nYBk/view?usp=drive_link";
+        const resumeDownloadURL = "https://drive.google.com/uc?export=download&id=1b9eEskFHoHJ6PbhVvl9HPKwSCQW1nYBk";
 
         window.openResumeModal = function() {
             if (resumeModal) {
